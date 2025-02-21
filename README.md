@@ -3,8 +3,7 @@
 
 主要配置：
 
-* PYTHON_HOME=/home/admin/.local
-* 默认 PyPI 源（pip.conf）：
+* 默认 PyPI 源（/etc/uv/uv.toml）：
     * 阿里云 PyPI 源 http://mirrors.aliyun.com/pypi/simple/
     * 清华大学 PyPI 源 https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
     * 华中科学大学 PyPI 源 https://mirrors.ustc.edu.cn/pypi/simple

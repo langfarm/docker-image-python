@@ -4,10 +4,10 @@ FROM --platform=${TARGETPLATFORM:-linux/amd64} langfarm/alinux3:3.9.0
 RUN yum remove -y python3
 RUN yum install -y python3.11
 
-# 官方安装 uv
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
-RUN ln -s /root/.local/bin/uv /bin/uv
-RUN ln -s /root/.local/bin/uvx /bin/uvx
+# install.sh 安装 uv
+RUN curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="/usr/local/bin" sh
+RUN chmod +x /usr/local/bin/uv
+RUN chmod +x /usr/local/bin/uvx
 
 # 用 pip 安装 uv
 #RUN yum install -y python3.11-pip
