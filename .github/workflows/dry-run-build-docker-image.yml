@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Dry Run Docker Image CI
 
 on:
   workflow_dispatch:
