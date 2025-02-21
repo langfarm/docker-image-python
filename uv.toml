@@ -1,0 +1,7 @@
+[[index]]
+url = "http://mirrors.aliyun.com/pypi/simple/"
+default = true
+extra-index-url = [
+    "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+    , "https://mirrors.ustc.edu.cn/pypi/simple"
+]
