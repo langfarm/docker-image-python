@@ -30,6 +30,11 @@ COPY pip.conf /etc/pip.conf
 ENV UV_PYTHON_INSTALL_DIR=/usr/local/python
 ENV UV_CACHE_DIR=/var/cache/uv
 
+# su - admin 登录 admin 时，uv 环境变量也生效
+RUN echo "export UV_PYTHON_INSTALL_DIR=$UV_PYTHON_INSTALL_DIR" >> /home/admin/.bashrc
+RUN echo "export UV_CACHE_DIR=$UV_CACHE_DIR" >> /home/admin/.bashrc
+
+# 创建 uv 相关目录
 RUN mkdir -p $UV_PYTHON_INSTALL_DIR
 RUN mkdir -p $UV_CACHE_DIR
 
