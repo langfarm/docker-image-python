@@ -1,4 +1,4 @@
-FROM --platform=${TARGETPLATFORM:-linux/amd64} langfarm/alinux3:3.9.1
+FROM --platform=${TARGETPLATFORM:-linux/amd64} langfarm/alinux3:3.9.2
 
 # 安装 python3.11
 #RUN yum remove -y python3
@@ -9,7 +9,6 @@ ARG UV_HOME=/usr/local/uv
 RUN mkdir -p ${UV_HOME}/bin
 RUN curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="${UV_HOME}/bin" sh
 RUN chmod +x ${UV_HOME}/bin/uv*
-RUN chown -R admin:admin ${UV_HOME}
 
 RUN ln -s ${UV_HOME}/bin/uv /usr/local/bin/uv
 RUN ln -s ${UV_HOME}/bin/uvx /usr/local/bin/uvx
@@ -30,9 +29,9 @@ COPY pip.conf /etc/pip.conf
 ENV UV_PYTHON_INSTALL_DIR=/usr/local/python
 ENV UV_CACHE_DIR=/var/cache/uv
 
-# su - admin 登录 admin 时，uv 环境变量也生效
-RUN echo "export UV_PYTHON_INSTALL_DIR=$UV_PYTHON_INSTALL_DIR" >> /home/admin/.bashrc
-RUN echo "export UV_CACHE_DIR=$UV_CACHE_DIR" >> /home/admin/.bashrc
+# 直接 root 用户，uv 环境变量也生效
+RUN echo "export UV_PYTHON_INSTALL_DIR=$UV_PYTHON_INSTALL_DIR" >> /root/.bashrc
+RUN echo "export UV_CACHE_DIR=$UV_CACHE_DIR" >> /root/.bashrc
 
 # 创建 uv 相关目录
 RUN mkdir -p $UV_PYTHON_INSTALL_DIR
@@ -43,7 +42,3 @@ RUN ${UV_HOME}/bin/uv python install 3.12
 RUN ln -s $(uv python find 3.12) /usr/local/bin/python
 RUN ln -s $(uv python find 3.12) /usr/local/bin/python3
 RUN ln -s $(uv python find 3.12) /usr/local/bin/python3.12
-
-# 设置权限给 admin
-RUN chown -R admin:admin $UV_PYTHON_INSTALL_DIR
-RUN chown -R admin:admin $UV_CACHE_DIR
