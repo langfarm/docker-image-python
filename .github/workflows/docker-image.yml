@@ -33,6 +33,9 @@ jobs:
           images: langfarm/python
           tags: |
             type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{version}}-alinux3
+            type=semver,pattern={{major}}.{{minor}}-alinux3
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
