@@ -60,6 +60,8 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          build-args: |
+            PYTHON_VERSION=${{ matrix.PYTHON_VERSION }}
           platforms: |
             linux/amd64
             linux/arm64
