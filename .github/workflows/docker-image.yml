@@ -16,7 +16,18 @@ jobs:
       contents: read
       attestations: write
       id-token: write
+
+    strategy:
+      matrix:
+        PYTHON_VERSION: ["3.11.11", "3.12.9"]
+
     steps:
+      - name: Display Configuration
+        env:
+          PYTHON_VERSION: ${{ matrix.PYTHON_VERSION }}
+        run: |
+          echo "Build PYTHON_VERSION = ${PYTHON_VERSION}"
+
       - name: Check out the repo
         uses: actions/checkout@v4
 
@@ -32,10 +43,10 @@ jobs:
         with:
           images: langfarm/python
           tags: |
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{version}}-alinux3
-            type=semver,pattern={{major}}.{{minor}}-alinux3
+            type=semver,pattern={{version}},value=${{ matrix.PYTHON_VERSION }}
+            type=semver,pattern={{version}}-alinux3,value=${{ matrix.PYTHON_VERSION }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ matrix.PYTHON_VERSION }}
+            type=semver,pattern={{major}}.{{minor}}-alinux3,value=${{ matrix.PYTHON_VERSION }}
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
