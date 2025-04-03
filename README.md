@@ -18,5 +18,5 @@
   - python 的安装目录为 /usr/local/python 。 生成连接到 /usr/local/bin/python
 
 ## 镜像标签
-* ```langfarm/python:3.12```, ```langfarm/python:3.12-aliunx3```, ```langfarm/python:3.12.9```, ```langfarm/python:3.12.9-aliunx3```
-* ```langfarm/python:3.11```, ```langfarm/python:3.11-aliunx3```, ```langfarm/python:3.11.11```, ```langfarm/python:3.11.11-aliunx3```
+* ```langfarm/python:3.12```, ```langfarm/python:3.12-alinux3```, ```langfarm/python:3.12.9```, ```langfarm/python:3.12.9-alinux3```
+* ```langfarm/python:3.11```, ```langfarm/python:3.11-alinux3```, ```langfarm/python:3.11.11```, ```langfarm/python:3.11.11-alinux3```
