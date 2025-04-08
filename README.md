@@ -11,9 +11,7 @@
   - 华中科学大学 PyPI 源 https://mirrors.ustc.edu.cn/pypi/simple
 - uv 版本 0.6.12
   - uv 安装到 /usr/local/bin 目录；
-  - uv 相关环境变更：
-    - UV_PYTHON_INSTALL_DIR=/usr/local/python
-    - UV_CACHE_DIR=/var/cache/uv
+  - uv 相关环境变更：UV_PYTHON_INSTALL_DIR=/usr/local/python
 - 用 uv 来安装 python
   - python 的安装目录为 /usr/local/python 。 生成连接到 /usr/local/bin/python
 
