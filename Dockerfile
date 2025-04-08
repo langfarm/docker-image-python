@@ -6,12 +6,11 @@ COPY pip.conf /etc/pip.conf
 
 # 设置 uv 相关配置
 ENV UV_PYTHON_INSTALL_DIR=/usr/local/python
-ENV UV_CACHE_DIR=/var/cache/uv
 
 # python 版本
 ARG PYTHON_VERSION
-ENV PYTHON_VERSION=${PYTHON_VERSION:-3.12}
-ENV PYTHON_SHOT_VERSION=${PYTHON_VERSION%.*}
+ENV PYTHON_VERSION=${PYTHON_VERSION:-3.12.9}
+ENV PYTHON_SHORT_VERSION=${PYTHON_VERSION%.*}
 
 # install.sh 安装 uv
 ENV UV_HOME=/usr/local
@@ -26,8 +25,4 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR="${UV_HOME}/
     && ${UV_HOME}/bin/uv python install ${PYTHON_VERSION} \
     && ln -s $(uv python find ${PYTHON_VERSION}) /usr/local/bin/python \
     && ln -s $(uv python find ${PYTHON_VERSION}) /usr/local/bin/python3 \
-    && ln -s $(uv python find ${PYTHON_VERSION}) /usr/local/bin/python${PYTHON_SHOT_VERSION} \
-    && mkdir -p $UV_PYTHON_INSTALL_DIR \
-    && mkdir -p $UV_CACHE_DIR \
-    && echo "export UV_PYTHON_INSTALL_DIR=$UV_PYTHON_INSTALL_DIR" >> /root/.bashrc \
-    && echo "export UV_CACHE_DIR=$UV_CACHE_DIR" >> /root/.bashrc
+    && ln -s $(uv python find ${PYTHON_VERSION}) /usr/local/bin/python${PYTHON_SHORT_VERSION}
